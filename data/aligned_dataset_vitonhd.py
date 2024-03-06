@@ -194,7 +194,7 @@ class AlignedDataset(BaseDataset):
         Pose_tensor = pose_map
 
         # person 3d pose
-        densepose_path = P_path.replace('/image/', '/pose/')[:-4]+'.png'
+        densepose_path = P_path.replace('/image/', '/dense/')[:-4]+'.png'
         dense_mask = Image.open(densepose_path).convert('L')
         transform_for_mask = get_transform(self.opt, params, method=Image.NEAREST, normalize=False)
         dense_mask_tensor = transform_for_mask(dense_mask) * 255.0
