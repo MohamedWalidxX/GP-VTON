@@ -280,11 +280,11 @@ class AlignedDataset(BaseDataset):
         C = Image.open(C_path).convert('RGB')
         C_tensor = transform_for_rgb(C)
 
-        CM_path = C_path.replace('/cloth/', '/cloth_mask-bytedance/')[:-4]+'.png'
+        CM_path = C_path.replace('/cloth/', '/cloth_mask/')[:-4]+'.png'
         CM = Image.open(CM_path).convert('L')
         CM_tensor = transform_for_mask(CM)
 
-        cloth_parsing_path = C_path.replace('/cloth/', '/cloth_parse-bytedance/')[:-4]+'.png'
+        cloth_parsing_path = C_path.replace('/cloth/', '/cloth_parse/')[:-4]+'.png'
         cloth_parsing = Image.open(cloth_parsing_path).convert('L')
         cloth_parsing_tensor = transform_for_mask(cloth_parsing) * 255.0
         cloth_parsing_tensor = cloth_parsing_tensor[0:1, ...]
