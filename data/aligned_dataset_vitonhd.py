@@ -201,7 +201,7 @@ class AlignedDataset(BaseDataset):
         dense_mask_tensor = dense_mask_tensor[0:1, ...]
 
         # person parsing
-        parsing_path = P_path.replace('/image/', '/parse-bytedance/')[:-4]+'.png'
+        parsing_path = P_path.replace('/image/', '/parse/')[:-4]+'.png'
         parsing = Image.open(parsing_path).convert('L')
         parsing_tensor = transform_for_mask(parsing) * 255.0
 
