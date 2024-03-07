@@ -413,6 +413,7 @@ for epoch in range(start_epoch, opt.niter + opt.niter_decay + 1):
               (epoch, opt.niter + opt.niter_decay, time.time() - epoch_start_time))
 
     # save model for this epoch
+    # EDIT THIS BELOW CODE FOR MODUOLS
     if epoch % opt.save_epoch_freq == 0:
         if opt.local_rank == 0:
             print('saving the model at the end of epoch %d, iters %d' %
