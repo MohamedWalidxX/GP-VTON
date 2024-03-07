@@ -7,7 +7,7 @@ class TrainOptions(BaseOptions):
         BaseOptions.initialize(self)
         # for displays
         self.parser.add_argument(
-            '--launcher', choices=['none', 'pytorch'], default='none', help='job launcher')
+            '--launcher', choices=['none', 'pytorch'], default='pytorch', help='job launcher')
         self.parser.add_argument('--local_rank', type=int, default=0)
 
         self.parser.add_argument('--write_loss_frep', type=int, default=100,
