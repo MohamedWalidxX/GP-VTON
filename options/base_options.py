@@ -18,7 +18,8 @@ class BaseOptions():
         self.parser.add_argument('--use_dropout', action='store_true', help='use dropout for the generator')
         self.parser.add_argument('--data_type', default=32, type=int, choices=[8, 16, 32], help="Supported data type i.e. 8, 16, 32 bit")
         self.parser.add_argument('--verbose', action='store_true', default=False, help='toggles verbose')
-
+        self.parser.add_argument('--nproc_per_node', type=int, default=1, help='nproc_per_node is the number of gpus')
+        self.parser.add_argument('--master_port', type=int, default=7129, help='the master port number')
         # input/output sizes       
         self.parser.add_argument('--batchSize', type=int, default=1, help='input batch size')
         self.parser.add_argument('--loadSize', type=int, default=512, help='scale images to this size')
@@ -29,7 +30,7 @@ class BaseOptions():
 
         # for setting inputs
         self.parser.add_argument('--dataroot', type=str,default='/kaggle/input/gp-vton-dataset/VITON-HD/VITON-HD')
-        self.parser.add_argument('--resize_or_crop', type=str, default='None', help='scaling and cropping of images at load time [resize_and_crop|crop|scale_width|scale_width_and_crop]')
+        self.parser.add_argument('--resize_or_crop', type=str, default='none', help='scaling and cropping of images at load time [resize_and_crop|crop|scale_width|scale_width_and_crop]')
         self.parser.add_argument('--serial_batches', action='store_true', help='if true, takes images in order to make batches, otherwise takes them randomly')        
         self.parser.add_argument('--no_flip', action='store_true', help='if specified, do not flip the images for data argumentation') 
         self.parser.add_argument('--nThreads', default=1, type=int, help='# threads for loading data')                
