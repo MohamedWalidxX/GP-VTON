@@ -1,5 +1,6 @@
 import os
 from random import random
+import random
 from data.base_dataset import BaseDataset, get_params, get_transform
 from PIL import Image
 import torch
