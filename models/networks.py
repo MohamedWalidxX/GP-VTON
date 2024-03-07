@@ -5,8 +5,7 @@ from torchvision import models
 from options.train_options import TrainOptions
 import os
 import functools
-from torch.nn.utils import spectral_norm
-
+from torch.nn.utils.spectral_norm import spectral_norm
 opt = TrainOptions().parse()
 
 def set_requires_grad(nets, requires_grad=False):
