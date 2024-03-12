@@ -190,6 +190,33 @@ class RefinePyramid(nn.Module):
 
         return tuple(reversed(feature_list))
 
+class BottomUpFeaturePyramidNetwork(nn.Module):
+  def __init__(self, chns=[64, 128, 256, 256, 256], fpn_dim=256):
+    super(BottomUpFeaturePyramidNetwork, self).__init__()
+    self.smooth = []
+    self.downsampling = DownSample(fpn_dim, fpn_dim)
+      for i in range(len(chns)):
+          smooth_layer = nn.Conv2d(
+              fpn_dim, fpn_dim, kernel_size=3, padding=1)
+          self.smooth.append(smooth_layer)
+      self.smooth = nn.ModuleList(self.smooth)
+    def forward(self, x):
+      conv_ftr_list = x
+
+      feature_list = []
+      last_feature = None
+      for i, conv_ftr in enumerate(list(conv_ftr_list)):
+          # adaptive
+          feature = conv_ftr
+          # fuse
+          if last_feature is not None:
+              feature = feature + self.downsampling(x)
+              feature = self.smooth[i](feature)
+
+          last_feature = feature
+          feature_list.append(feature)
+      return tuple(feature_list)
+
 
 class AFlowNet_Vitonhd_lrarms(nn.Module):
     def __init__(self, num_pyramid, fpn_dim=256):
