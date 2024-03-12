@@ -149,6 +149,7 @@ class FeatureEncoder(nn.Module):
         for encoder in self.encoders:
             x = encoder(x)
             encoder_features.append(x)
+            print(f"\n\n\n\n\t\t\t Encoder feature shape {x.shape}")
         return encoder_features
 
 
@@ -173,7 +174,7 @@ class RefinePyramid(nn.Module):
 
     def forward(self, x):
         conv_ftr_list = x
-        print(f"\n\n\n\n\t\t\t\tType of Refine input: {type(x)} \n\n\n")
+        #print(f"\n\n\n\n\t\t\t\tType of Refine input: {type(x)} \n\n\n")
         feature_list = []
         last_feature = None
         for i, conv_ftr in enumerate(list(reversed(conv_ftr_list))):
@@ -187,6 +188,7 @@ class RefinePyramid(nn.Module):
             feature = self.smooth[i](feature)
             last_feature = feature
             feature_list.append(feature)
+            print(f"\n\n\n\n\t\t\tRefine feature shape {feature.shape}")
 
         return reversed(feature_list)
 
@@ -205,7 +207,7 @@ class BottomUpFeaturePyramidNetwork(nn.Module):
 
     def forward(self, x):
         conv_ftr_list = x
-        print(f"\n\n\n\n\t\t\t\tType of PAPAPAPAPA input: {type(x)}\n\n\n")
+        #print(f"\n\n\n\n\t\t\t\tType of PAPAPAPAPA input: {type(x)}\n\n\n")
 
         feature_list = []
         last_feature = None
@@ -216,6 +218,7 @@ class BottomUpFeaturePyramidNetwork(nn.Module):
 
             # fuse
             if last_feature is not None:
+                print(f"\n\n\n\n\t\t\t PAPAPAPA feature shape {feature.shape}")
                 feature = feature + self.downsampling(x)  
                 feature = self.smooth[i](feature)
 
