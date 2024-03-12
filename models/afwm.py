@@ -173,7 +173,7 @@ class RefinePyramid(nn.Module):
 
     def forward(self, x):
         conv_ftr_list = x
-        print(f"\n\n\n\n\t\t\t\tType of Refine input: {type(x}\n\n\n")
+        print(f"\n\n\n\n\t\t\t\tType of Refine input: {type(x)} \n\n\n")
         feature_list = []
         last_feature = None
         for i, conv_ftr in enumerate(list(reversed(conv_ftr_list))):
@@ -205,7 +205,7 @@ class BottomUpFeaturePyramidNetwork(nn.Module):
 
     def forward(self, x):
         conv_ftr_list = x
-        print(f"\n\n\n\n\t\t\t\tType of PAPAPAPAPA input: {type(x}\n\n\n")
+        print(f"\n\n\n\n\t\t\t\tType of PAPAPAPAPA input: {type(x)}\n\n\n")
 
         feature_list = []
         last_feature = None
