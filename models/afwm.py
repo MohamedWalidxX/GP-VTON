@@ -195,11 +195,11 @@ class BottomUpFeaturePyramidNetwork(nn.Module):
     super(BottomUpFeaturePyramidNetwork, self).__init__()
     self.smooth = []
     self.downsampling = DownSample(fpn_dim, fpn_dim)
-      for i in range(len(chns)):
-          smooth_layer = nn.Conv2d(
-              fpn_dim, fpn_dim, kernel_size=3, padding=1)
-          self.smooth.append(smooth_layer)
-      self.smooth = nn.ModuleList(self.smooth)
+    for i in range(len(chns)):
+        smooth_layer = nn.Conv2d(
+            fpn_dim, fpn_dim, kernel_size=3, padding=1)
+        self.smooth.append(smooth_layer)
+    self.smooth = nn.ModuleList(self.smooth)
     def forward(self, x):
       conv_ftr_list = x
 
