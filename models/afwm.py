@@ -188,7 +188,7 @@ class RefinePyramid(nn.Module):
             last_feature = feature
             feature_list.append(feature)
 
-        return tuple(reversed(feature_list))
+        return reversed(feature_list)
 
 class BottomUpFeaturePyramidNetwork(nn.Module):
     
@@ -544,8 +544,8 @@ class AFWM_Vitonhd_lrarms(nn.Module):
         self.cond_features = FeatureEncoder(input_nc, num_filters)
         self.image_FPN = RefinePyramid(chns=num_filters, fpn_dim=fpn_dim)
         self.cond_FPN = RefinePyramid(chns=num_filters, fpn_dim=fpn_dim)
-        #self.clothes_bottom_up_fpn = BottomUpFeaturePyramidNetwork(chns=num_filters, fpn_dim=fpn_dim)
-        #self.person_bottom_up_fpn = BottomUpFeaturePyramidNetwork(chns=num_filters, fpn_dim=fpn_dim)
+        self.clothes_bottom_up_fpn = BottomUpFeaturePyramidNetwork(chns=num_filters, fpn_dim=fpn_dim)
+        self.person_bottom_up_fpn = BottomUpFeaturePyramidNetwork(chns=num_filters, fpn_dim=fpn_dim)
         self.aflow_net = AFlowNet_Vitonhd_lrarms(len(num_filters))
         self.old_lr = opt.lr
         self.old_lr_warp = opt.lr*0.2
@@ -554,11 +554,10 @@ class AFWM_Vitonhd_lrarms(nn.Module):
                 image_input_right, image_edge_left, image_edge_torso, image_edge_right, preserve_mask):
         image_input_concat = torch.cat([image_input, image_label_input],1)
 
-        #image_pyramids = self.clothes_bottom_up_fpn(list(self.image_FPN(self.image_features(image_input_concat))))
-        image_pyramids = self.image_FPN(self.image_features(image_input_concat))
-        #cond_pyramids = self.person_bottom_up_fpn(list(self.cond_FPN(self.cond_features(cond_input))))  # maybe use nn.Sequential
-        cond_pyramids = self.cond_FPN(self.cond_features(cond_input))  # maybe use nn.Sequential
-        print(f"\n\n\n\n\t\t\t\t\tPYRAMID OUTPUT TYPE: {type(image_pyramids)}\n\n\n\n\n\n")
+        image_pyramids = self.clothes_bottom_up_fpn(list(self.image_FPN(self.image_features(image_input_concat))))
+        #image_pyramids = self.image_FPN(self.image_features(image_input_concat))
+        cond_pyramids = self.person_bottom_up_fpn(self.cond_FPN(self.cond_features(cond_input)))  # maybe use nn.Sequential
+        #cond_pyramids = self.cond_FPN(self.cond_features(cond_input))  # maybe use nn.Sequential
         image_concat = torch.cat([image_input_left,image_input_torso,image_input_right],0)
         image_edge_concat = torch.cat([image_edge_left, image_edge_torso, image_edge_right],0)
 
