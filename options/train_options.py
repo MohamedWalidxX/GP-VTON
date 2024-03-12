@@ -36,7 +36,7 @@ class TrainOptions(BaseOptions):
             '--phase', type=str, default='train', help='train, val, test, etc')
         self.parser.add_argument(
             '--niter', type=int, default=50, help='# of iter at starting learning rate')
-        self.parser.add_argument('--niter_decay', type=int, default=50,
+        self.parser.add_argument('--niter_decay', type=int, default=0,
                                  help='# of iter to linearly decay learning rate to zero')
         self.parser.add_argument(
             '--beta1', type=float, default=0.5, help='momentum term of adam')
