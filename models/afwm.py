@@ -218,8 +218,7 @@ class BottomUpFeaturePyramidNetwork(nn.Module):
 
             # fuse
             if last_feature is not None:
-                feature = feature + self.downsampling(x)  
-                print(f"\n\n\n\n\t\t\t PAPAPAPA feature shape AFTEEEER {feature.shape}")
+                feature = feature + self.downsampling(last_feature)  
                 feature = self.smooth[i](feature)
 
             last_feature = feature
