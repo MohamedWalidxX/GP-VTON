@@ -554,9 +554,10 @@ class AFWM_Vitonhd_lrarms(nn.Module):
                 image_input_right, image_edge_left, image_edge_torso, image_edge_right, preserve_mask):
         image_input_concat = torch.cat([image_input, image_label_input],1)
 
-        image_pyramids = self.clothes_bottom_up_fpn(list(self.image_FPN(self.image_features(image_input_concat))))
-        cond_pyramids = self.person_bottom_up_fpn(list(self.cond_FPN(self.cond_features(cond_input))))  # maybe use nn.Sequential
-
+        #image_pyramids = self.clothes_bottom_up_fpn(list(self.image_FPN(self.image_features(image_input_concat))))
+        image_pyramids = self.image_FPN(self.image_features(image_input_concat))
+        #cond_pyramids = self.person_bottom_up_fpn(list(self.cond_FPN(self.cond_features(cond_input))))  # maybe use nn.Sequential
+        cond_pyramids = self.cond_FPN(self.cond_features(cond_input))  # maybe use nn.Sequential
         image_concat = torch.cat([image_input_left,image_input_torso,image_input_right],0)
         image_edge_concat = torch.cat([image_edge_left, image_edge_torso, image_edge_right],0)
 
