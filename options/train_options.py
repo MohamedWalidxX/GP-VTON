@@ -10,11 +10,11 @@ class TrainOptions(BaseOptions):
             '--launcher', choices=['none', 'pytorch'], default='pytorch', help='job launcher')
         self.parser.add_argument('--local_rank', type=int, default=0)
 
-        self.parser.add_argument('--write_loss_frep', type=int, default=500,
+        self.parser.add_argument('--write_loss_frep', type=int, default=100,
                                  help='frequency of showing training results on screen')
-        self.parser.add_argument('--display_freq', type=int, default=500,
+        self.parser.add_argument('--display_freq', type=int, default=100,
                                  help='frequency of showing training results on screen')
-        self.parser.add_argument('--print_freq', type=int, default=500,
+        self.parser.add_argument('--print_freq', type=int, default=100,
                                  help='frequency of showing training results on console')
         self.parser.add_argument('--save_latest_freq', type=int,
                                  default=1000, help='frequency of saving the latest results')
