@@ -226,7 +226,7 @@ class BottomUpFeaturePyramidNetwork(nn.Module):
 
             last_feature = feature
             feature_list.append(feature)
-            print(f"\n\n\n\t\t\tFeature contribution dim: {feature.shape}\n\n\n")
+            #print(f"\n\n\n\t\t\tFeature contribution dim: {feature.shape}\n\n\n")
         return tuple(feature_list)
 
 
