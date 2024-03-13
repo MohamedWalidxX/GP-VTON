@@ -198,12 +198,15 @@ class BottomUpFeaturePyramidNetwork(nn.Module):
     def __init__(self, chns=[64, 128, 256, 256, 256], fpn_dim=256):
         super(BottomUpFeaturePyramidNetwork, self).__init__()
         self.smooth = []
-        self.downsampling = DownSample(fpn_dim, fpn_dim)
+        self.downsample = []
 
         for i in range(len(chns) - 1):
             smooth_layer = nn.Conv2d(fpn_dim, fpn_dim, kernel_size=3, padding=1)
+            downsample_block = DownSample(fpn_dim, fpn_dim)
             self.smooth.append(smooth_layer)
+            self.downsample.append(downsample_block)
         self.smooth = nn.ModuleList(self.smooth)
+        self.downsample = nn.ModuleList(self.downsample)
 
     def forward(self, x):
         conv_ftr_list = x
@@ -218,12 +221,12 @@ class BottomUpFeaturePyramidNetwork(nn.Module):
 
             # fuse
             if last_feature is not None:
-                feature = feature + self.downsampling(last_feature)  
+                feature = feature + self.downsample[i - 1](last_feature)  
                 feature = self.smooth[i - 1](feature)
 
             last_feature = feature
             feature_list.append(feature)
-
+            print(f"\n\n\n\t\t\tFeature contribution dim: {feature.shape}\n\n\n")
         return tuple(feature_list)
 
 
