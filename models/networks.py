@@ -288,7 +288,7 @@ def load_checkpoint_parallel(model, checkpoint_path):
     if not os.path.exists(checkpoint_path):
         print('No checkpoint!')
         return
-
+    print(f"\n\n\n\t\t{checkpoint_path}")
     checkpoint = torch.load(checkpoint_path, map_location='cuda:{}'.format(opt.local_rank))
     checkpoint_new = model.state_dict()
     for param in checkpoint_new:
