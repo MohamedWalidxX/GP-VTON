@@ -291,14 +291,12 @@ def load_checkpoint_parallel(model, checkpoint_path):
     print(f"\n\n\n\t\t{checkpoint_path}")
     checkpoint = torch.load(checkpoint_path, map_location='cuda:{}'.format(opt.local_rank))
     cnt = 0
+    with open("/kaggle/working/out.txt", "w") as f:
+        f.write("HELLO")
     for key, value in checkpoint.items():
         # Step 3: Print the weights
-        print(key)
-        print(value)
-        print("\n\n\n MOODY")
-    print(f"\n\n\n\n\n\n\t\t\tThe counter : {cnt}\n\n\n\n\n\n")
-
-    print(f"\n\n\n\n\t\t\t\tWeight count == {cnt}\n\n\n\n")
+        with open("/kaggle/working/out.txt", "a") as f:
+            f.write(f"{key} \n\n {value} \n\n")
     checkpoint_new = model.state_dict()
     for param in checkpoint_new:
         checkpoint_new[param] = checkpoint[param]
