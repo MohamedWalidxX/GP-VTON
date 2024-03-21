@@ -290,6 +290,13 @@ def load_checkpoint_parallel(model, checkpoint_path):
         return
     print(f"\n\n\n\t\t{checkpoint_path}")
     checkpoint = torch.load(checkpoint_path, map_location='cuda:{}'.format(opt.local_rank))
+    cnt = 0
+    for name, param in checkpoint.named_parameters():
+        cnt++
+        # print(name, param.shape, param.dtype)  # Print name, shape, and data type
+        # # If you want to print the parameter values:
+        # print(param.data) 
+    print(f"\n\n\n\n\t\t\t\tWeight count == {cnt}\n\n\n\n")
     checkpoint_new = model.state_dict()
     for param in checkpoint_new:
         checkpoint_new[param] = checkpoint[param]
