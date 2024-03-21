@@ -291,7 +291,7 @@ def load_checkpoint_parallel(model, checkpoint_path):
     print(f"\n\n\n\t\t{checkpoint_path}")
     checkpoint = torch.load(checkpoint_path, map_location='cuda:{}'.format(opt.local_rank))
     cnt = 0
-    if checkpoint_path == "/kaggle/input/3-epochs/flow/PBAFN_warp_epoch_046.pth":
+    if checkpoint_path == "/kaggle/input/gp-vton-dataset/checkpoints/checkpoints/gp-vton_partflow_vitonhd_usepreservemask_lrarms_1027/PBAFN_warp_epoch_121.pth":
         with open("/kaggle/working/out.txt", "w") as f:
             f.write("HELLO")
         for key, value in checkpoint.items():
