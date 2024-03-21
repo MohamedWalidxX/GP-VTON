@@ -291,12 +291,14 @@ def load_checkpoint_parallel(model, checkpoint_path):
     print(f"\n\n\n\t\t{checkpoint_path}")
     checkpoint = torch.load(checkpoint_path, map_location='cuda:{}'.format(opt.local_rank))
     cnt = 0
-    with open("/kaggle/working/out.txt", "w") as f:
-        f.write("HELLO")
-    for key, value in checkpoint.items():
-        # Step 3: Print the weights
-        with open("/kaggle/working/out.txt", "a") as f:
-            f.write(f"{key} \n\n {value} \n\n")
+    if checkpoint_path == "/kaggle/input/3-epochs/flow/PBAFN_warp_epoch_046.pth":
+        with open("/kaggle/working/out.txt", "w") as f:
+            f.write("HELLO")
+        for key, value in checkpoint.items():
+            # Step 3: Print the weights
+            with open("/kaggle/working/out.txt", "a") as f:
+                f.write(f"{key} \n\n {value} \n\n")
+                
     checkpoint_new = model.state_dict()
     for param in checkpoint_new:
         checkpoint_new[param] = checkpoint[param]
