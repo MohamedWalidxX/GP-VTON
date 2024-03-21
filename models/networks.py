@@ -294,6 +294,8 @@ def load_checkpoint_parallel(model, checkpoint_path):
     for key, value in checkpoint.items():
         # Step 3: Print the weights
         print(key)
+        print(value)
+        print("\n\n\n MOODY")
     print(f"\n\n\n\n\n\n\t\t\tThe counter : {cnt}\n\n\n\n\n\n")
 
     print(f"\n\n\n\n\t\t\t\tWeight count == {cnt}\n\n\n\n")
