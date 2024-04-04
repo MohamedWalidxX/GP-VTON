@@ -82,7 +82,7 @@ if opt.local_rank == 0:
     writer = SummaryWriter(run_path)
     print('#training images = %d' % dataset_size)
 
-start_epoch, epoch_iter = 100, 0
+start_epoch, epoch_iter = 103, 0
 total_steps = (start_epoch-1) * dataset_size + epoch_iter
 step = 0
 step_per_batch = dataset_size
