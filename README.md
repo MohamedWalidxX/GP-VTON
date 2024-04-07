@@ -27,7 +27,7 @@
 <strong>GP-VTON aims to transfer an in-shop garment onto a specific person.</strong>
 
 <div style="width: 100%; text-align: center; margin:auto;">
-    <img style="width:100%" src="figures/worldcup_vton.png">
+    <img style="width:100%" src="">
 </div>
 
 </div>
