@@ -51,7 +51,7 @@ class BaseOptions():
         self.parser.add_argument('--niter_fix_global', type=int, default=0, help='number of epochs that we only train the outmost local enhancer')        
         self.parser.add_argument('--tv_weight', type=float, default=0.1, help='weight for TV loss')
 
-        self.parser.add_argument('--image_pairs_txt', type=str, default='/kaggle/input/gp-vton-dataset/VITON-HD/VITON-HD/train_pairs_1018.txt')
+        self.parser.add_argument('--image_pairs_txt', type=str, default='/kaggle/input/modyvton-and-karim/test_pairs.txt')
 
         self.initialized = True
 
