@@ -50,7 +50,7 @@ class TrainOptions(BaseOptions):
                                  help='load the pretrained model from the specified location')
         self.parser.add_argument('--PFAFN_gen_checkpoint', type=str,
                                  help='load the pretrained model from the specified location')
-        self.parser.add_argument('--PBAFN_warp_checkpoint', type=str, default= '/kaggle/input/3-epochs/flow/PBAFN_warp_epoch_118.pth', 
+        self.parser.add_argument('--PBAFN_warp_checkpoint', type=str, default= '/kaggle/input/3-epochs/flow/PBAFN_warp_epoch_040.pth', 
                                  help='load the pretrained model from the specified location')
         self.parser.add_argument('--PBAFN_gen_checkpoint', type=str,
                                  help='load the pretrained model from the specified location')
