@@ -1,5 +1,5 @@
 from options.train_options import TrainOptions
-from models.networks import VGGLoss, save_checkpoint, load_checkpoint_parallel, SpectralDiscriminator, GANLoss, set_requires_grad
+from models.networks import VGGLoss, save_checkpoint, load_checkpoint_parallel, SpectralDiscriminator, GANLoss, set_requires_grad, initialize_weights
 from models.afwm import AFWM_Vitonhd_lrarms, TVLoss
 import os
 import numpy as np
