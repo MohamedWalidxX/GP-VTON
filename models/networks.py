@@ -283,6 +283,11 @@ def initialize_weights(bad_model, pretrained_path):
     print("\t\t\t\t\n\n\nFINE TUNING STARTS HERE!\n\n\n")
     bad_model_state = bad_model.state_dict()
     good_model_state = torch.load(pretrained_path, map_location='cuda:{}'.format(opt.local_rank))
+    for key, value in bad_model_state.items():
+            # Step 3: Print the weights
+            with open("/kaggle/working/badBefore.txt", "a") as f:
+                f.write(f"{key} \n\n {value}\n\n")
+                
     for key in good_model_state.keys():
         if key in bad_model_state:
             # Initialize weights from the good model to the bad model
@@ -290,8 +295,13 @@ def initialize_weights(bad_model, pretrained_path):
 
     for key, value in bad_model_state.items():
             # Step 3: Print the weights
-            with open("/kaggle/working/out.txt", "a") as f:
-                f.write(f"{key} \n\n")
+            with open("/kaggle/working/badAfter.txt", "a") as f:
+                f.write(f"{key} \n\n {value}\n\n")
+
+    for key, value in good_model_state.items():
+            # Step 3: Print the weights
+            with open("/kaggle/working/Good.txt", "a") as f:
+                f.write(f"{key} \n\n {value}\n\n")
     bad_model.load_state_dict(bad_model_state)
     
 
