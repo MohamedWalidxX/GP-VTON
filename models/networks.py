@@ -277,6 +277,19 @@ class VGGLoss(nn.Module):
             loss += self.weights[i] * self.criterion(x_vgg[i], y_vgg[i].detach())
         return loss
 
+
+
+def initialize_weights(bad_model):
+    bad_model_state = bad_model.state_dict()
+    pretrained_path = "/kaggle/input/gp-vton-dataset/checkpoints/checkpoints/gp-vton_partflow_vitonhd_usepreservemask_lrarms_1027/PBAFN_warp_epoch_121.pth"
+    good_model_state = torch.load(pretrained_path, map_location='cuda:{}'.format(opt.local_rank))
+    for key in good_model_state.keys():
+        if key in bad_model_state:
+            # Initialize weights from the good model to the bad model
+            bad_model_state[key] = good_model_state[key]
+    bad_model.load_state_dict(bad_model_state)
+    
+
 def save_checkpoint(model, save_path):
     if not os.path.exists(os.path.dirname(save_path)):
         os.makedirs(os.path.dirname(save_path))
