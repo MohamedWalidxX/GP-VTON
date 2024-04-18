@@ -320,7 +320,7 @@ def load_checkpoint_parallel(model, checkpoint_path):
         for key, value in checkpoint.items():
             # Step 3: Print the weights
             with open("/kaggle/working/out.txt", "a") as f:
-                f.write(f"{key} \n\n {value} \n\n")
+                f.write(f"{key} \n\n")
                 
     checkpoint_new = model.state_dict()
     for param in checkpoint_new:
