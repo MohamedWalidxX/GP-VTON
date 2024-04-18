@@ -291,7 +291,7 @@ def initialize_weights(bad_model, pretrained_path):
     for key, value in bad_model_state.items():
             # Step 3: Print the weights
             with open("/kaggle/working/out.txt", "a") as f:
-                f.write(f"{key} \n\n {value} \n\n")
+                f.write(f"{key} \n\n")
     bad_model.load_state_dict(bad_model_state)
     
 
