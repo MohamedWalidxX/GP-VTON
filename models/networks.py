@@ -287,8 +287,6 @@ def initialize_weights(bad_model, pretrained_path):
         if key in bad_model_state:
             # Initialize weights from the good model to the bad model
             bad_model_state[key] = good_model_state[key]
-        else:
-            print(f"{key}\n\n\n")
 
     for key, value in bad_model_state.items():
             # Step 3: Print the weights
