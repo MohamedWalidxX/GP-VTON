@@ -46,6 +46,8 @@ warp_model.train()
 warp_model.cuda()
 if opt.PBAFN_warp_checkpoint is not None:
     load_checkpoint_parallel(warp_model, opt.PBAFN_warp_checkpoint)
+else :
+    initialize_weights(warp_model, "/kaggle/input/gp-vton-dataset/checkpoints/checkpoints/gp-vton_partflow_vitonhd_usepreservemask_lrarms_1027/PBAFN_warp_epoch_121.pth")
 warp_model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(warp_model).to(device)
 if opt.isTrain and len(opt.gpu_ids):
     model = torch.nn.parallel.DistributedDataParallel(
@@ -62,6 +64,8 @@ discriminator.train()
 discriminator.cuda()
 if opt.pretrain_checkpoint_D is not None:
     load_checkpoint_parallel(discriminator, opt.pretrain_checkpoint_D)
+else:
+    initialize_weights(discriminator, "/kaggle/input/gp-vton-dataset/checkpoints/checkpoints/gp-vton_gen_vitonhd_wskin_wgan_lrarms_1029/PBAFN_gen_epoch_201.pth")
 
 discriminator = torch.nn.SyncBatchNorm.convert_sync_batchnorm(discriminator).to(device)
 if opt.isTrain and len(opt.gpu_ids):
