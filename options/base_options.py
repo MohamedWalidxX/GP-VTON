@@ -21,7 +21,7 @@ class BaseOptions():
         self.parser.add_argument('--nproc_per_node', type=int, default=1, help='nproc_per_node is the number of gpus')
         self.parser.add_argument('--master_port', type=int, default=7129, help='the master port number')
         # input/output sizes       
-        self.parser.add_argument('--batchSize', type=int, default=1, help='input batch size')
+        self.parser.add_argument('--batchSize', type=int, default=2, help='input batch size')
         self.parser.add_argument('--loadSize', type=int, default=512, help='scale images to this size')
         self.parser.add_argument('--fineSize', type=int, default=512, help='then crop to this size')
         self.parser.add_argument('--label_nc', type=int, default=14, help='# of input label channels')
@@ -51,7 +51,7 @@ class BaseOptions():
         self.parser.add_argument('--niter_fix_global', type=int, default=0, help='number of epochs that we only train the outmost local enhancer')        
         self.parser.add_argument('--tv_weight', type=float, default=0.1, help='weight for TV loss')
 
-        self.parser.add_argument('--image_pairs_txt', type=str, default='/kaggle/input/gp-vton-dataset/VITON-HD/VITON-HD/train_pairs_1018.txt')
+        self.parser.add_argument('--image_pairs_txt', type=str, default='/kaggle/input/modyvton-and-karim/test_pairs.txt')
 
         self.initialized = True
 
